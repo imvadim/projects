@@ -1,11 +1,12 @@
 package by.epam.vadzimnovikau1.module6.features.pageObjects;
 
 import by.epam.vadzimnovikau1.module6.features.base.Email;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 
 public class InboxPage extends AbstractPage {
 	private String keysPressed = Keys.chord(Keys.CONTROL, Keys.RETURN);
@@ -48,12 +49,17 @@ public class InboxPage extends AbstractPage {
     	return driver.getTitle().contains(title);
     }
 
+    public InboxPage newLetter(){
+        compose.click();
+        return new InboxPage(driver);
+	}
+
 	public InboxPage fillLetter(Email email){
 		compose.click();
-        to.sendKeys(email.getAddress());
-        topic.sendKeys(email.getSubject());
-        letter.sendKeys(email.getText());
-        close.click();
+		to.sendKeys(email.getAddress());
+		topic.sendKeys(email.getSubject());
+		letter.sendKeys(email.getText());
+		close.click();
 		return new InboxPage(driver);
 	}
 	

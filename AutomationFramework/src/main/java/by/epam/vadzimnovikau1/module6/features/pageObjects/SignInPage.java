@@ -1,10 +1,12 @@
 package by.epam.vadzimnovikau1.module6.features.pageObjects;
 
-import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.io.File;
+import java.io.IOException;
 
 public class SignInPage extends AbstractPage {
 
@@ -25,19 +27,12 @@ public class SignInPage extends AbstractPage {
     }
 
     public InboxPage loginToGmail(String login, String password){
-
-        rightClick(loginInput);
-
         highlightElement(loginInput);
-
         loginInput.sendKeys(login);
-
         nextBtn.click();
-
         pwdInput.sendKeys(password);
-
         signInBtn.click();
-
+        waiter(5).until(ExpectedConditions.titleContains("Inbox"));
         return new InboxPage(driver);
     }
 
@@ -56,7 +51,7 @@ public class SignInPage extends AbstractPage {
     private void makeScreenShot(){
         File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(src, new File("C:\\Users\\Vadzim_Novikau1\\Documents\\AutomationFramework\\highlight.png"));
+            FileUtils.copyFile(src, new File("highlight.png"));
         }
 
         catch (IOException e)

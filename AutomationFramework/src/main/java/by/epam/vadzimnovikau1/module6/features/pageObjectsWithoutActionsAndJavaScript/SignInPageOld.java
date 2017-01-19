@@ -3,6 +3,7 @@ package by.epam.vadzimnovikau1.module6.features.pageObjectsWithoutActionsAndJava
 import by.epam.vadzimnovikau1.module6.features.pageObjects.AbstractPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SignInPageOld extends AbstractPage {
 
@@ -23,15 +24,11 @@ public class SignInPageOld extends AbstractPage {
     }
 
     public InboxPageOld loginToGmail(String login, String password){
-
         loginInput.sendKeys(login);
-
         nextBtn.click();
-
         pwdInput.sendKeys(password);
-
         signInBtn.click();
-
+        waiter(5).until(ExpectedConditions.titleContains("Inbox"));
         return new InboxPageOld(driver);
     }
 }

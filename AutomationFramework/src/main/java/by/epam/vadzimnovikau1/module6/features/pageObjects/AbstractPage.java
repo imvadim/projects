@@ -6,7 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AbstractPage {
+public abstract class AbstractPage {
 
     protected WebDriver driver;
 
@@ -16,12 +16,11 @@ public class AbstractPage {
     }
 
     public WebDriverWait waiter(){
-        return new WebDriverWait(driver, 2);
+        return waiter(1);
     }
 
-    public void rightClick(WebElement element){
-        new Actions(driver).contextClick(element).build().perform();
-        new Actions(driver).release(element).build().perform();
+    public WebDriverWait waiter(int time){
+        return new WebDriverWait(driver, time);
     }
 
     public void mineSendKeys(WebElement element, String keysPressed){

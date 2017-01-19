@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 public class GmailTestDecoratorWithSingleton {
     private WebDriver driver;
-    private static final String GITHUB_URL = "https://github.com/imvadim/AutomationFramework";
+    private static final String GITHUB_URL = "https://github.com/imvadim/projects";
     private static final String GMAIL_URL = "https://accounts.google.com/ServiceLogin?service=mail&continue=https://mail.google.com/mail/&hl=en";
 
     @Test(description = "Verify that Singleton works correctly")
