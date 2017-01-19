@@ -10,11 +10,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class InboxPage extends AbstractPage {
 	private String keysPressed = Keys.chord(Keys.CONTROL, Keys.RETURN);
 
-//	@FindBy(css = ".T-I.J-J5-Ji.T-I-KE.L3")
-	@FindBy(xpath = "html/body/div[7]/div[3]/div/div[2]/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div")
+	@FindBy(xpath = "//div[text()='COMPOSE']")
 	private WebElement compose;
 
-	@FindBy(css = ".vO")
+//	@FindBy(css = ".vO")
+//	@FindBy(xpath = "//textarea[contains(@class, 'vO')]")
+	@FindBy(xpath = "//textarea[@class='vO']")
 	private WebElement to;
 
 	@FindBy(css = ".aoT")
@@ -29,8 +30,7 @@ public class InboxPage extends AbstractPage {
 	@FindBy(partialLinkText = "Drafts")
 	private WebElement goDrafts;
 
-//	@FindBy(partialLinkText = "Sent")
-	@FindBy(xpath = "html/body/div[7]/div[3]/div/div[2]/div[1]/div[1]/div[1]/div[2]/div/div/div[2]/div/div[1]/div[1]/div/div[3]/div/div/div[2]/span/a")
+	@FindBy(xpath = "//a[text()='Sent Mail']")
 	private WebElement goSent;
 
 	@FindBy(css = ".gbii")

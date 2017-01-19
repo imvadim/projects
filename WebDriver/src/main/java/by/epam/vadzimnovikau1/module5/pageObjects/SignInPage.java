@@ -13,13 +13,15 @@ public class SignInPage extends AbstractPage {
     @FindBy(id = "Email")
     private WebElement loginInput;
 
-    @FindBy(id = "next")
+//    @FindBy(id = "next")
+    @FindBy(xpath = "//input[@id='next']")
     private WebElement nextBtn;
 
     @FindBy(id = "Passwd")
     private WebElement pwdInput;
 
-    @FindBy (id = "signIn")
+//    @FindBy (id = "signIn")
+    @FindBy(xpath = "//input[@id='signIn']")
     private WebElement signInBtn;
 
     public SignInPage(WebDriver driver) {
