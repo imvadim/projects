@@ -1,0 +1,18 @@
+subprojects{
+    apply plugin: "groovy"
+    apply plugin: "idea"
+    apply plugin: "eclipse"
+
+    repositories {
+        maven {
+            url "http://r19magpredev38.hiw.com/artifactory/repos"
+        }
+
+        //resolve dependencies for generation of spock reports
+        jcenter()
+    }
+
+    defaultTasks "clean", "build"
+}
+
+defaultTasks "clean", "build"
