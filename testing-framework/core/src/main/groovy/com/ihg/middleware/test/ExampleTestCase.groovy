@@ -18,8 +18,11 @@ abstract class ExampleTestCase extends Specification {
     HttpClient searchRegionsApiHttpClient
 
     @Autowired
-    HttpClient weatherGroupApiHttpClient
+    HttpClient getCurrentWeatherApiHttpClient
 
     @Autowired
-    HttpClient weatherDailyForecastApiHttpClient
+    HttpClient getWeatherForecastApiHttpClient
+
+    @Autowired
+    HttpClient getDailyWeatherForecastApiHttpClient
 }

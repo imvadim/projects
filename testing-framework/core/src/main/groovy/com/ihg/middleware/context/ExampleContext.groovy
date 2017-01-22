@@ -40,15 +40,20 @@ class ExampleContext extends AbstractContext {
     }
 
     @Bean
-    @Value('${weather.group.host.url}')
-    HttpClient weatherGroupApiHttpClient(String url) {
+    @Value('${weather.forecast.host.url}')
+    HttpClient getWeatherForecastApiHttpClient(String url) {
         new HttpClient(url)
     }
 
     @Bean
-    @Value('${daily.host.url}')
-    HttpClient weatherDailyForecastApiHttpClient(String url) {
+    @Value('${current.weather.host.url}')
+    HttpClient getCurrentWeatherApiHttpClient(String url) {
         new HttpClient(url)
     }
 
+    @Bean
+    @Value('${weather.daily.forecast.host.url}')
+    HttpClient getDailyWeatherForecastApiHttpClient(String url) {
+        new HttpClient(url)
+    }
 }
