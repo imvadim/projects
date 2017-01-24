@@ -4,16 +4,12 @@ import by.epam.vadzimnovikau1.module6.features.base.Email;
 import by.epam.vadzimnovikau1.module6.features.pageObjects.actions.DraftsPageActions;
 import by.epam.vadzimnovikau1.module6.features.pageObjects.actions.InboxPageActions;
 import by.epam.vadzimnovikau1.module6.features.pageObjects.actions.SignInPageActions;
-import by.epam.vadzimnovikau1.module6.features.pageObjects.elements.SignInPageElements;
 import by.epam.vadzimnovikau1.module6.features.patterns.factoryMethod.ChromeDriverCreator;
 import by.epam.vadzimnovikau1.module6.features.patterns.factoryMethod.WebDriverCreator;
 import by.epam.vadzimnovikau1.module6.features.patterns.staticFactory.StaticFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class GmailTestFactoryMethod {
     private WebDriver driver;
@@ -67,7 +63,7 @@ public class GmailTestFactoryMethod {
         new InboxPageActions(driver).logOut();
     }
 
-    @AfterSuite
+    @AfterClass
     public void tearDown() {
         creator.quit();
     }

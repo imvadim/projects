@@ -9,6 +9,7 @@ import by.epam.vadzimnovikau1.module6.features.patterns.singleton.WebDriverSingl
 import by.epam.vadzimnovikau1.module6.features.patterns.staticFactory.StaticFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -64,7 +65,7 @@ public class GmailTestDecoratorWithSingleton {
         new InboxPageActions(driver).logOut();
     }
 
-    @AfterSuite
+    @AfterClass
     public void tearDown() {
         WebDriverSingleton.closeDriver();
     }
