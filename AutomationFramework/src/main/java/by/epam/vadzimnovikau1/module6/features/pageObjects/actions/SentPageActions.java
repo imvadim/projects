@@ -1,20 +1,15 @@
-package by.epam.vadzimnovikau1.module6.features.pageObjects;
+package by.epam.vadzimnovikau1.module6.features.pageObjects.actions;
 
+import by.epam.vadzimnovikau1.module6.features.pageObjects.elements.SentPageElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.List;
-
-public class SentPage extends AbstractPage {
+public class SentPageActions extends SentPageElements {
     private boolean here = false;
 
-    @FindBy(css = ".y6>span")
-    private List<WebElement> mails;
-
-    public SentPage(WebDriver driver) {
+    public SentPageActions(WebDriver driver) {
         super(driver);
     }
 

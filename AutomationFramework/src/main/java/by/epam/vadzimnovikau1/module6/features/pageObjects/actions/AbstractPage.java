@@ -1,4 +1,4 @@
-package by.epam.vadzimnovikau1.module6.features.pageObjects;
+package by.epam.vadzimnovikau1.module6.features.pageObjects.actions;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,15 +15,15 @@ public abstract class AbstractPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public WebDriverWait waiter(){
+    protected WebDriverWait waiter(){
         return waiter(1);
     }
 
-    public WebDriverWait waiter(int time){
+    protected WebDriverWait waiter(int time){
         return new WebDriverWait(driver, time);
     }
 
-    public void mineSendKeys(WebElement element, String keysPressed){
+    protected void mineSendKeys(WebElement element, String keysPressed){
         new Actions(driver).sendKeys(element, keysPressed).build().perform();
     }
 }

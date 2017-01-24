@@ -1,7 +1,7 @@
 package by.epam.vadzimnovikau1.module6.features.patterns.staticFactory;
 
 import by.epam.vadzimnovikau1.module6.features.base.Email;
-import by.epam.vadzimnovikau1.module6.features.pageObjects.AbstractPage;
+import by.epam.vadzimnovikau1.module6.features.pageObjects.actions.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
 public class StaticFactory extends AbstractPage {

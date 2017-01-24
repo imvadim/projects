@@ -1,28 +1,17 @@
-package by.epam.vadzimnovikau1.module6.features.pageObjects;
+package by.epam.vadzimnovikau1.module6.features.pageObjects.actions;
 
+import by.epam.vadzimnovikau1.module6.features.pageObjects.elements.DraftsPageElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.List;
-
-public class DraftsPage extends AbstractPage {
+public class DraftsPageActions extends DraftsPageElements {
     private boolean here = false;
     private String address;
 
-    @FindBy(css = ".y6>span")
-    private List<WebElement> mails;
-
-    @FindBy(css = "input[name='subjectbox']")
-    private WebElement topic;
-
-    @FindBy(css = ".Am.Al.editable.LW-avf")
-    private WebElement letter;
-
-    public DraftsPage(WebDriver driver) {
+    public DraftsPageActions(WebDriver driver) {
         super(driver);
     }
 
