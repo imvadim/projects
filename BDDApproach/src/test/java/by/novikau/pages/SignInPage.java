@@ -2,6 +2,7 @@ package by.novikau.pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SignInPage extends AbstractPage {
 
@@ -30,6 +31,8 @@ public class SignInPage extends AbstractPage {
         pwdInput.sendKeys(password);
 
         signInBtn.click();
+
+        waiter(5).until(ExpectedConditions.titleContains("Inbox"));
 
         return new InboxPage(driver);
     }
