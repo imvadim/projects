@@ -15,8 +15,7 @@ public class GmailTestFactoryMethod extends BaseTest{
     @Parameters({"gmail_url"})
     @BeforeGroups(groups = "factory", description = "Start browser")
     protected void setUp(String url){
-        creator = new ChromeDriverCreator();
-//        creator = new FirefoxDriverCreator();
+        creator = new FirefoxDriverCreator(); // ChromeDriverCreator();
         driver = creator.factoryMethod();
         driver.get(url);
     }

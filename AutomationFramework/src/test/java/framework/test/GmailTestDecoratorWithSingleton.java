@@ -15,7 +15,7 @@ public class GmailTestDecoratorWithSingleton extends BaseTest {
     @Parameters({"gmail_url"})
     @BeforeGroups(groups = "singleton", description = "Start browser")
     protected void setUp(String url) {
-        driver = WebDriverSingleton.getInstance();
+        driver = WebDriverSingleton.getInstanceFirefox(); //getInstanceChrome()
         driver.get(url);
     }
 
