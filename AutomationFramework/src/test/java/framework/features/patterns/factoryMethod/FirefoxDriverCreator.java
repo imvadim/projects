@@ -9,8 +9,6 @@ import java.util.concurrent.TimeUnit;
 public class FirefoxDriverCreator extends WebDriverCreator{
 
     public WebDriver factoryMethod() {
-//        FirefoxDriverManager.getInstance().setup();
-        System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\drivers\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -19,6 +17,6 @@ public class FirefoxDriverCreator extends WebDriverCreator{
 
     @Override
     public void quit(){
-        driver.close();
+        driver.quit();
     }
 }
