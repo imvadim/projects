@@ -18,6 +18,7 @@ public class SignInPageActions extends SignInPageElements {
         highlightElement(loginInput);
         loginInput.sendKeys(login);
         nextBtn.click();
+        waiter(5).until(ExpectedConditions.visibilityOf(pwdInput));
         pwdInput.sendKeys(password);
         signInBtn.click();
         waiter(5).until(ExpectedConditions.titleContains("Inbox"));

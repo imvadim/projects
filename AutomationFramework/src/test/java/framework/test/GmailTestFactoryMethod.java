@@ -5,6 +5,7 @@ import framework.features.pageObjects.actions.DraftsPageActions;
 import framework.features.pageObjects.actions.InboxPageActions;
 import framework.features.pageObjects.actions.SignInPageActions;
 import framework.features.patterns.factoryMethod.ChromeDriverCreator;
+import framework.features.patterns.factoryMethod.FirefoxDriverCreator;
 import framework.features.patterns.staticFactory.StaticFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -14,13 +15,14 @@ public class GmailTestFactoryMethod extends BaseTest{
     @Parameters({"gmail_url"})
     @BeforeGroups(groups = "factory", description = "Start browser")
     protected void setUp(String url){
-        creator = new ChromeDriverCreator();
+//        creator = new ChromeDriverCreator();
+        creator = new FirefoxDriverCreator();
         driver = creator.factoryMethod();
         driver.get(url);
     }
 
     @Parameters({"username","password","title"})
-    @Test(groups = "factory", description = "Verify that login was successful", dependsOnGroups = "checkpoint")
+    @Test(groups = "factory", description = "Verify that login was successful")
     private void loginToGmailOk(String username, String password, String title) {
         Assert.assertTrue(new SignInPageActions(driver).loginToGmail(username, password).loginIsCorrect(title),
                 "Looks you are NOT logged in correctly!");
@@ -33,7 +35,7 @@ public class GmailTestFactoryMethod extends BaseTest{
     }
 
     @Parameters({"subject","text"})
-	@Test(dependsOnMethods={"defaultEmailInDraftsOK"}, description="Verify that THE SECOND email is displayed in Drafts folder")
+	@Test(dependsOnMethods={"defaultEmailInDraftsOK"}, description="Verify that THE SECOND email is displayed in Drafts folder", dependsOnGroups = "checkpointNotInDraftsOK")
     private void secondEmailInDraftsOK(String subject, String text) {
         Email email = new StaticFactory(driver).createDefaultEmail().withSubject(subject).withText(text);
         Assert.assertTrue(new InboxPageActions(driver).fillLetter(email).toDrafts().inDrafts(email.getSubject()));
@@ -60,6 +62,8 @@ public class GmailTestFactoryMethod extends BaseTest{
 
     @AfterGroups(groups = "factory")
     protected void tearDown() {
-        creator.quit();
+        if (driver != null) {
+            creator.quit();
+        }
     }
 }

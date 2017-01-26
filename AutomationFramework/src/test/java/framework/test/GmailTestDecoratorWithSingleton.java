@@ -26,14 +26,14 @@ public class GmailTestDecoratorWithSingleton extends BaseTest {
                 "Looks you are NOT logged in correctly!");
     }
 
-    @Test(dependsOnMethods={"loginToGmailSingletonOk"}, description="Verify that THE DEFAULT email is displayed in Drafts folder", groups = "checkpoint")
-    private void defaultEmailInDraftsOK() {
-        Email email = new StaticFactory(driver).createDefaultEmail();
-        Assert.assertTrue(new InboxPageOldActions(driver).fillLetter(email).toDrafts().inDrafts(email.getSubject()));
-    }
+//    @Test(dependsOnMethods={"loginToGmailSingletonOk"}, description="Verify that THE DEFAULT email is displayed in Drafts folder")
+//    private void defaultEmailInDraftsOK() {
+//        Email email = new StaticFactory(driver).createDefaultEmail();
+//        Assert.assertTrue(new InboxPageOldActions(driver).fillLetter(email).toDrafts().inDrafts(email.getSubject()));
+//    }
 
     @Parameters({"subject","text"})
-	@Test(dependsOnMethods={"defaultEmailInDraftsOK"}, description="Verify that THE SECOND email is displayed in Drafts folder")
+	@Test(dependsOnMethods={"loginToGmailSingletonOk"}, description="Verify that email is displayed in Drafts folder")
     private void secondEmailInDraftsOK(String subject, String text) {
         Email email = new StaticFactory(driver).createDefaultEmail().withSubject(subject).withText(text);
         Assert.assertTrue(new InboxPageOldActions(driver).fillLetter(email).toDrafts().inDrafts(email.getSubject()));
@@ -46,7 +46,7 @@ public class GmailTestDecoratorWithSingleton extends BaseTest {
     }
 
 	@Parameters({"subject"})
-	@Test(dependsOnMethods={"infoInEmailOK"}, description="Verify that the email is not displayed in Drafts folder any more")
+	@Test(dependsOnMethods={"infoInEmailOK"}, description="Verify that the email is not displayed in Drafts folder any more", groups = "checkpointNotInDraftsOK")
     public void notInDraftsOK(String subject) {
         Assert.assertFalse(new InboxPageOldActions(driver).sendEmail().toDrafts().inDrafts(subject));
     }
@@ -60,6 +60,8 @@ public class GmailTestDecoratorWithSingleton extends BaseTest {
 
     @AfterGroups(groups = "singleton")
     protected void tearDown() {
-        WebDriverSingleton.closeDriver();
+        if (driver != null) {
+            WebDriverSingleton.closeDriver();
+        }
     }
 }

@@ -3,13 +3,10 @@ package framework.features.pageObjects.actions;
 import framework.features.base.Email;
 import framework.features.pageObjects.elements.InboxPageElements;
 import framework.features.pageObjects.elements.SignInPageElements;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class InboxPageActions extends InboxPageElements {
-	private String keysPressed = Keys.chord(Keys.CONTROL, Keys.RETURN);
-
 	public InboxPageActions(WebDriver driver) {
 		super(driver);
 	}
@@ -19,15 +16,12 @@ public class InboxPageActions extends InboxPageElements {
     	return driver.getTitle().contains(title);
     }
 
-    public InboxPageActions newLetter(){
-        compose.click();
-        return new InboxPageActions(driver);
-	}
-
 	public InboxPageActions fillLetter(Email email){
 		compose.click();
+		waiter(5).until(ExpectedConditions.visibilityOf(to));
 		to.sendKeys(email.getAddress());
 		topic.sendKeys(email.getSubject());
+		letter.click();
 		letter.sendKeys(email.getText());
 		close.click();
 		return new InboxPageActions(driver);
@@ -40,7 +34,7 @@ public class InboxPageActions extends InboxPageElements {
 	}
 
 	public InboxPageActions sendEmail(){
-		mineSendKeys(letter, keysPressed);
+		letter.sendKeys(keysPressed);
 		return new InboxPageActions(driver);
 	}
 	

@@ -22,8 +22,4 @@ public abstract class AbstractPage {
     protected WebDriverWait waiter(int time){
         return new WebDriverWait(driver, time);
     }
-
-    protected void mineSendKeys(WebElement element, String keysPressed){
-        new Actions(driver).sendKeys(element, keysPressed).build().perform();
-    }
 }

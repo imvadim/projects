@@ -1,24 +1,27 @@
 package framework.features.patterns.singleton;
 
 import framework.features.patterns.decorator.Decorator;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
 
     private static WebDriver driver;
-    private static final String driverPath = "src\\test\\resources\\drivers\\chromedriver.exe";
 
     private WebDriverSingleton(){}
 
     public static WebDriver getInstance(){
         if(null == driver){
-            System.setProperty("webdriver.chrome.driver", driverPath);
-            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-            driver = new ChromeDriver(capabilities);
+//            ChromeDriverManager.getInstance().setup();
+//            System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\drivers\\chromedriver.exe");
+//            driver = new ChromeDriver();
+
+//            FirefoxDriverManager.getInstance().setup();
+            System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\drivers\\geckodriver.exe");
+            driver = new FirefoxDriver();
 
             // Decorator
             driver = new Decorator(driver);
@@ -30,8 +33,8 @@ public class WebDriverSingleton {
     }
 
     public static void closeDriver(){
-        driver.quit();
-        driver = null;
+        driver.close();
+//        driver = null;
     }
 
 }
