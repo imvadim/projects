@@ -1,17 +1,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
- 
-<suite name="Gmail suite" parallel="classes" thread-count="4" >
-	<test name="Gmail test">
-		<parameter name="gmail_url" value="https://accounts.google.com/ServiceLogin?service=mail&#38;continue=https://mail.google.com/mail/&#38;hl=en"/>
-		<parameter name="username" value="automatization.test@gmail.com"/>
-		<parameter name="password" value="fw748fg099a"/>
-		<parameter name="title" value="Inbox"/>
-		<parameter name="address" value="automatization.test@gmail.com"/>
-		<parameter name="subject" value="Second letter"/>
-		<parameter name="text" value="Hello! The framework has created the second draft."/>
-		<classes>
-			<class name="framework.test.GmailTestDecoratorWithSingleton" />
-			<class name="framework.test.GmailTestFactoryMethod" />
-		</classes>
-	</test>
+
+
+<!--<suite name="Gmail suite" parallel="classes" thread-count="2">-->
+    <suite name="Gmail suite" verbose="1">
+
+
+    <test name="Gmail test">
+        <parameter name="browser" value="chrome"/>
+        <!--<parameter name="browser" value="firefox"/>-->
+
+        <classes>
+            <!--<class name="framework.test.GmailTestDecoratorWithSingleton" />-->
+            <class name="framework.test.BaseTest"/>
+            <class name="framework.test.GmailTestFactoryMethod" />
+        </classes>
+    </test>
+
+
 </suite>

@@ -1,13 +1,35 @@
 package framework.test;
 
-import framework.features.patterns.factoryMethod.WebDriverCreator;
+import framework.patterns.factoryMethod.WebDriverCreator;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
 
-abstract class BaseTest {
-    protected WebDriver driver;
-    protected WebDriverCreator creator;
+import java.util.concurrent.TimeUnit;
 
-    protected abstract void setUp(String url);
+public class BaseTest {
 
-    protected abstract void tearDown();
+    private String browser = "chrome";
+    private String url = "https://accounts.google.com/ServiceLogin?service=mail&#38;continue=https://mail.google.com/mail/&#38;hl=en";
+
+    private WebDriver driver;
+    private WebDriverCreator creator = new WebDriverCreator();
+
+    @BeforeSuite(groups = "factory", description = "Start browser")
+    public void setUp() {
+        driver = creator.factoryMethod(browser);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(url);
+    }
+
+    @AfterSuite(groups = "factory")
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
 }
