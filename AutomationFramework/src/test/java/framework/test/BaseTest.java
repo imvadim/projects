@@ -1,6 +1,8 @@
 package framework.test;
 
+import framework.TestValues;
 import framework.patterns.factoryMethod.WebDriverCreator;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -11,18 +13,22 @@ public class BaseTest {
     private String browser = "chrome";
     private String url = "https://accounts.google.com/ServiceLogin?service=mail&#38;continue=https://mail.google.com/mail/&#38;hl=en";
 
-    private WebDriver driver;
+    protected WebDriver driver;
     private WebDriverCreator creator = new WebDriverCreator();
 
-    @BeforeSuite(groups = "factory", description = "Start browser")
+
+    @BeforeSuite(alwaysRun = true)
+//    @Parameters("browser")
     public void setUp() {
+
         driver = creator.factoryMethod(browser);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(url);
+
+        driver.get(new TestValues().getGmail_url());
     }
 
-    @AfterSuite(groups = "factory")
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
             driver.quit();
@@ -30,6 +36,6 @@ public class BaseTest {
     }
 
     public WebDriver getDriver() {
-        return driver;
+        return this.driver;
     }
 }

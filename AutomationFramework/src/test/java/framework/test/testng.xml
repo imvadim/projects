@@ -8,10 +8,9 @@
     <test name="Gmail test">
         <parameter name="browser" value="chrome"/>
         <!--<parameter name="browser" value="firefox"/>-->
-
         <classes>
             <!--<class name="framework.test.GmailTestDecoratorWithSingleton" />-->
-            <class name="framework.test.BaseTest"/>
+            <!--<class name="framework.test.BaseTest"/>-->
             <class name="framework.test.GmailTestFactoryMethod" />
         </classes>
     </test>

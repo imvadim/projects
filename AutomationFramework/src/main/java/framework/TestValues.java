@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class TestValues {
-    public String gmail_url;
-    public String username;
-    public String password;
+    private String gmail_url;
+    private String username;
+    private String password;
 
     public TestValues(){
         java.util.Properties prop = new java.util.Properties();
@@ -20,8 +20,8 @@ public class TestValues {
             prop.load(input);
 
             setGmail_url(prop.getProperty("gmail_url"));
-            setPassword(prop.getProperty("username"));
-            setUsername(prop.getProperty("password"));
+            setPassword(prop.getProperty("password"));
+            setUsername(prop.getProperty("username"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -36,15 +36,15 @@ public class TestValues {
         }
     }
 
-    public void setGmail_url(String gmail_url) {
+    private void setGmail_url(String gmail_url) {
         this.gmail_url = gmail_url;
     }
 
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
-    public void setUsername(String username) {
+    private void setUsername(String username) {
         this.username = username;
     }
 
