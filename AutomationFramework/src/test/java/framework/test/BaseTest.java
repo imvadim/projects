@@ -1,5 +1,6 @@
 package framework.test;
 
+import framework.patterns.decorator.Decorator;
 import framework.values.TestValues;
 import framework.patterns.factoryMethod.WebDriverCreator;
 import org.openqa.selenium.WebDriver;
@@ -15,9 +16,9 @@ public class BaseTest {
     protected void setUp(String browser) {
         WebDriverCreator creator = new WebDriverCreator();
         driver = creator.factoryMethod(browser);
+        driver = new Decorator(driver);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
         driver.get(new TestValues().getGmail_url());
     }
 

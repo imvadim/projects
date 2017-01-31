@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <jre.level>1.8</jre.level>
-        <jdk.level>1.8</jdk.level>
+        <!--<jre.level>1.8</jre.level>-->
+        <!--<jdk.level>1.8</jdk.level>-->
         <testng-version>6.10</testng-version>
         <selenium-version>3.0.1</selenium-version>
         <commons-io-version>2.5</commons-io-version>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
+            <artifactId>selenium-java</artifactId>
             <version>${selenium-version}</version>
         </dependency>
         <dependency>
@@ -28,26 +28,13 @@
             <version>${testng-version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-support</artifactId>
-            <version>${selenium-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>${selenium-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>${selenium-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io-version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>commons-io</groupId>-->
+            <!--<artifactId>commons-io</artifactId>-->
+            <!--<version>${commons-io-version}</version>-->
+        <!--</dependency>-->
     </dependencies>
+
+
 
 </project>

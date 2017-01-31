@@ -14,12 +14,12 @@ import static java.lang.System.getenv
  */
 @ContextConfiguration
 class ExampleContext extends AbstractContext {
+    private String idValue
 
     @Bean
     PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         def propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer()
         def resources = [
-//                new ClassPathResource("conf/environments/${getenv(ENV)}/example.properties"),
                     new ClassPathResource("conf/environments/qa-devtest/example.properties"),
         ]
         propertyPlaceholderConfigurer.locations = resources
@@ -55,5 +55,14 @@ class ExampleContext extends AbstractContext {
     @Value('${weather.daily.forecast.host.url}')
     HttpClient getDailyWeatherForecastApiHttpClient(String url) {
         new HttpClient(url)
+    }
+
+    @Value('${id.value}')
+    void setIdValue(String idValue){
+        this.idValue=idValue
+    }
+
+    String getIdValue(){
+        this.idValue
     }
 }

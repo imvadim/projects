@@ -8,8 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.io.File;
 import java.io.IOException;
 
-import static framework.patterns.singleton.WebDriverSingleton.getJs;
-import static framework.patterns.singleton.WebDriverSingleton.getSrc;
+import static framework.patterns.decorator.Decorator.getJs;
+import static framework.patterns.decorator.Decorator.getSrc;
+
 
 public class SignInPageActions extends SignInPageElements {
 

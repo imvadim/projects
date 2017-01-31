@@ -12,7 +12,7 @@ class GetCurrentWeatherTestCaseXmlSlurper extends ExampleTestCase{
 
         when: "I retrieve weather by geographic coordinates"
             def response = getCurrentWeatherApiHttpClient.send(
-                    REQUEST_PARAMS_STRING : "lat={lat}&lon={lon}&mode={mode}&APPID={id}",
+                    REQUEST_PARAMS_STRING : "lat={lat}&lon={lon}&mode={mode}&appid={id}",
                     REQUEST_PARAMS_VARIABLES :
                             [
                                     lat : latValue,

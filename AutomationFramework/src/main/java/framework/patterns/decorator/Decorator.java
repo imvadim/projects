@@ -1,18 +1,20 @@
 package framework.patterns.decorator;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
 public class Decorator implements WebDriver {
-
+    private static JavascriptExecutor js;
+    private static File src;
     protected WebDriver driver;
 
     public Decorator(WebDriver driver) {
         this.driver = driver;
+        js = ((JavascriptExecutor) driver);
+        src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
     }
 
     public void get(String s) {
@@ -66,5 +68,13 @@ public class Decorator implements WebDriver {
 
     public Options manage() {
         return driver.manage();
+    }
+
+    public static JavascriptExecutor getJs() {
+        return js;
+    }
+
+    public static File getSrc() {
+        return src;
     }
 }
