@@ -1,10 +1,10 @@
 package framework.pageObjects.elements;
 
-import framework.pageObjects.actions.AbstractPage;
+import framework.pageObjects.actions.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
-public class SignInPageElements extends AbstractPage {
+public class SignInPageElements extends BasePage {
 
     @FindBy(id = "Email")
     protected WebElement loginInput;

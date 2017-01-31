@@ -1,13 +1,13 @@
 package framework.pageObjects.elements;
 
-import framework.pageObjects.actions.AbstractPage;
+import framework.pageObjects.actions.BasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
-public class InboxPageElements extends AbstractPage {
+public class InboxPageElements extends BasePage {
 	protected String keysPressed = Keys.chord(Keys.CONTROL, Keys.RETURN);
 
 	@FindBy(css = ".T-I.J-J5-Ji.T-I-KE.L3")

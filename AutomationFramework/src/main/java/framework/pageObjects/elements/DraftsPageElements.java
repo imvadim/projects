@@ -1,13 +1,13 @@
 package framework.pageObjects.elements;
 
-import framework.pageObjects.actions.AbstractPage;
+import framework.pageObjects.actions.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class DraftsPageElements extends AbstractPage {
+public class DraftsPageElements extends BasePage {
 
     @FindBy(css = ".y6>span")
     protected List<WebElement> mails;

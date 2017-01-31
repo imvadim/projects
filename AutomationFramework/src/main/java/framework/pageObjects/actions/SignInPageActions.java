@@ -8,13 +8,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.io.File;
 import java.io.IOException;
 
+import static framework.patterns.singleton.WebDriverSingleton.getJs;
+import static framework.patterns.singleton.WebDriverSingleton.getSrc;
+
 public class SignInPageActions extends SignInPageElements {
 
     public SignInPageActions(WebDriver driver) {
         super(driver);
     }
 
-    public InboxPageActions loginToGmail(String login, String password){
+    public InboxPageActions loginToGmail(String login, String password) {
         highlightElement(loginInput);
         loginInput.sendKeys(login);
         nextBtn.click();
@@ -25,9 +28,9 @@ public class SignInPageActions extends SignInPageElements {
         return new InboxPageActions(driver);
     }
 
-    private void highlightElement(WebElement webElement){
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("arguments[0].style.backgroundColor = 'yellow'", webElement);
+    private void highlightElement(WebElement webElement) {
+
+        getJs().executeScript("arguments[0].style.backgroundColor = 'yellow'", webElement);
         makeScreenShot();
         try {
             Thread.sleep(1000);
@@ -37,14 +40,11 @@ public class SignInPageActions extends SignInPageElements {
 
     }
 
-    private void makeScreenShot(){
-        File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(src, new File("highlight.png"));
-        }
+    private void makeScreenShot() {
 
-        catch (IOException e)
-        {
+        try {
+            FileUtils.copyFile(getSrc(), new File("highlight.png"));
+        } catch (IOException e) {
             System.out.println(e.getMessage());
 
         }

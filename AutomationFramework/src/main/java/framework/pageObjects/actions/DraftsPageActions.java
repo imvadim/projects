@@ -16,7 +16,6 @@ public class DraftsPageActions extends DraftsPageElements {
     }
 
     public boolean inDrafts(String subject){
-
         try{
             waiter().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".TC")));
         }catch (Exception e){
@@ -27,7 +26,6 @@ public class DraftsPageActions extends DraftsPageElements {
                 }
             }
             }
-
         return this.here;
     }
 

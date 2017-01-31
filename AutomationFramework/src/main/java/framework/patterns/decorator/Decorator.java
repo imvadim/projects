@@ -3,18 +3,19 @@ package framework.patterns.decorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
 import java.util.Set;
 
-public class Decorator implements WebDriver{
+public class Decorator implements WebDriver {
 
     protected WebDriver driver;
 
-    public Decorator(WebDriver driver){
+    public Decorator(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void get(String s){
+    public void get(String s) {
         driver.get(s);
     }
 
