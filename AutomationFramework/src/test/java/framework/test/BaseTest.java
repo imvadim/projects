@@ -1,17 +1,19 @@
 package framework.test;
 
 import framework.patterns.decorator.Decorator;
-import framework.values.TestValues;
 import framework.patterns.factoryMethod.WebDriverCreator;
+import framework.values.TestValues;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     private WebDriver driver;
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass
     @Parameters("browser")
     protected void setUp(String browser) {
         WebDriverCreator creator = new WebDriverCreator();
@@ -22,7 +24,7 @@ public class BaseTest {
         driver.get(new TestValues().getGmail_url());
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass
     protected void tearDown() {
         if (driver != null) {
             driver.quit();
