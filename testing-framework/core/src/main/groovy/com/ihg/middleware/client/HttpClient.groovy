@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate
 import java.nio.charset.StandardCharsets
 
 import static org.springframework.http.HttpMethod.POST
-import static org.springframework.http.HttpMethod.GET
 
 /**
  * Custom class for call services for testing.
@@ -71,10 +70,10 @@ class HttpClient {
         // mapping parameters for request
         Map requestParamsVariables = params?.REQUEST_PARAMS_VARIABLES ?: Collections.<String, Object>emptyMap()
         Map<String, String> requestHeaders = params?.REQUEST_HEADERS ?: Collections.<String, String>emptyMap()
-        HttpMethod requestMethod = params?.REQUEST_METHOD ?: GET
+        HttpMethod requestMethod = params?.REQUEST_METHOD ?: POST
         def requestBody = params?.REQUEST_BODY ?: EMPTY_STRING
 //        def requestParamsString = params?.REQUEST_PARAMS_STRING  == null ? hostUrl : hostUrl + QUESTION_MARK + params.REQUEST_PARAMS_STRING
-        def requestParamsString = params?.REQUEST_PARAMS_STRING  == null ? hostUrl : hostUrl + QUESTION_MARK + params.REQUEST_PARAMS_STRING
+        def requestParamsString = params?.REQUEST_PARAMS_STRING  == null ? hostUrl : hostUrl + QUESTION_MARK + params.REQUEST_PARAMS_STRING + "&appid=33245aa9f05b63ee57f32f9b3cbbd1b7"
 
         // convert GString -> String
         if (requestBody.class == GStringImpl) {

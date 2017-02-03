@@ -24,9 +24,8 @@ class GetCurrentWeatherTestCaseXmlSlurper extends ExampleTestCase{
             )
 
         def result = new XmlSlurper().parseText(response)
-        def countryResult = result.city.@name
 
         then: "Correct city is founded"
-        countryResult == 'Brest'
+        result.city.@name == 'Brest'
     }
 }
