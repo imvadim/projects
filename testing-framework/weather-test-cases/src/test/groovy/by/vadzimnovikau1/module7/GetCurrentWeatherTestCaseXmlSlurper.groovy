@@ -20,7 +20,8 @@ class GetCurrentWeatherTestCaseXmlSlurper extends ExampleTestCase {
                                 type: typeValue,
                                 mode: modeValue,
                                 id  : idValue
-                        ]
+                        ],
+                REQUEST_METHOD : "GET"
         )
 
         def result = new XmlSlurper().parseText(response)

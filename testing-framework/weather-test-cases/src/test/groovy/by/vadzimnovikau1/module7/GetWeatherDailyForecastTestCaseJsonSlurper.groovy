@@ -22,11 +22,9 @@ class GetWeatherDailyForecastTestCaseJsonSlurper extends ExampleTestCase {
                         ]
         )
 
-        def slurper = new JsonSlurper()
-        def result = slurper.parseText(response)
+        def result = new JsonSlurper().parseText(response)
 
-        then: "First and last day are displayed in response"
-        result.list.dt[0] > 0
-        result.list.dt[(cntValue as int) - 1] > 0
+        then: "Number of lines returned by this API call is displayed in response"
+        (String) result.cnt == cntValue
     }
 }

@@ -4,7 +4,7 @@ import com.ihg.middleware.test.ExampleTestCase
 import groovy.json.JsonParserType
 import groovy.json.JsonSlurper
 
-class GetWeatherDailyForecastTestCaseJsonParser extends ExampleTestCase {
+class GetWeatherDailyForecastTestCaseJsonParserType extends ExampleTestCase {
     def "User should be able to retrieve daily forecast"() {
         String locationIdValue = "629634"
         String unitsValue = "metric"
@@ -26,8 +26,8 @@ class GetWeatherDailyForecastTestCaseJsonParser extends ExampleTestCase {
         def jsonSlurper = new JsonSlurper(type: JsonParserType.INDEX_OVERLAY)
         def result = jsonSlurper.parseText(response)
 
-        then: "First and last day is displayed in response"
-        result.list.dt[0] > 0
-        result.list.dt[(cntValue as int) - 1] > 0
+        then: "Temperature in the daytime is within the limits of the city"
+        result.list.temp[0].day > -35.5
+        result.list.temp[0].day < 36.7
     }
 }
