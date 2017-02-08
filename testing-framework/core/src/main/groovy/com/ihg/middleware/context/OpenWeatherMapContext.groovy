@@ -9,11 +9,8 @@ import org.springframework.test.context.ContextConfiguration
 
 import static java.lang.System.getenv
 
-/**
- * Created by Uladzimir_Ramaniuk on 11/5/2014.
- */
 @ContextConfiguration
-class ExampleContext extends AbstractContext {
+class OpenWeatherMapContext extends AbstractContext {
 
     @Bean
     PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
@@ -27,14 +24,32 @@ class ExampleContext extends AbstractContext {
     }
 
     @Bean
-    @Value('${weather.host.url}')
-    HttpClient weatherApiHttpClient(String url) {
+    @Value('${weather.forecast.host.url}')
+    HttpClient weatherForecastApiHttpClient(String url) {
         new HttpClient(url)
     }
 
     @Bean
-    @Value('${search.regions.host.url}')
-    HttpClient searchRegionsApiHttpClient(String url) {
+    @Value('${current.weather.host.url}')
+    HttpClient currentWeatherApiHttpClient(String url) {
         new HttpClient(url)
+    }
+
+    @Bean
+    @Value('${weather.daily.forecast.host.url}')
+    HttpClient dailyWeatherForecastApiHttpClient(String url) {
+        new HttpClient(url)
+    }
+
+    @Bean
+    @Value('${id}')
+    String idValue(String id) {
+        id
+    }
+
+    @Bean
+    @Value('${mode}')
+    String modeValue(String mode) {
+        mode
     }
 }

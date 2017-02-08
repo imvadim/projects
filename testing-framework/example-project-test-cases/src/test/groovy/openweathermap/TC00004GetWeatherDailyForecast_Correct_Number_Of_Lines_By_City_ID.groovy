@@ -1,17 +1,13 @@
-package by.vadzimnovikau1.module7
+package openweathermap
 
-import com.ihg.middleware.test.ExampleTestCase
+import com.ihg.middleware.test.OpenWeatherMapTestCase
 import groovy.json.JsonSlurper
 
-class GetWeatherDailyForecastTestCaseJsonSlurper extends ExampleTestCase {
+class TC00004GetWeatherDailyForecast_Correct_Number_Of_Lines_By_City_ID extends OpenWeatherMapTestCase {
     def "User should be able to retrieve daily forecast"() {
-        String locationIdValue = "629634"
-        String unitsValue = "metric"
-        String cntValue = "16"
-        String idValue = ValuesFromProperties.getID()
 
         when: "I retrieve daily forecast for a city id"
-        def response = getDailyWeatherForecastApiHttpClient.send(
+        String response = dailyWeatherForecastApiHttpClient.send(
                 REQUEST_PARAMS_STRING: "id={location}&units={units}&cnt={cnt}&appid={id}",
                 REQUEST_PARAMS_VARIABLES:
                         [
@@ -19,12 +15,15 @@ class GetWeatherDailyForecastTestCaseJsonSlurper extends ExampleTestCase {
                                 units   : unitsValue,
                                 cnt     : cntValue,
                                 id      : idValue
-                        ]
+                        ],
+                REQUEST_METHOD : "GET"
         )
 
-        def result = new JsonSlurper().parseText(response)
-
         then: "Number of lines returned by this API call is displayed in response"
-        (String) result.cnt == cntValue
+        assert new JsonSlurper().parseText(response).cnt == cntValue.toInteger()
+
+        where:
+        locationIdValue |unitsValue |cntValue
+        "629634"        |"metric"   |"5"
     }
 }

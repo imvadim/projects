@@ -5,7 +5,7 @@ dependencies {
     compile("org.springframework:spring-jms:3.2.9.RELEASE")
     compile("org.spockframework:spock-core:0.7-groovy-2.0")
     compile("org.springframework:spring-test:3.2.9.RELEASE")
-    compile("com.oracle:ojdbc6:11.2.0.4")
+    compile("com.oracle:ojdbc6:11.2.0.4.0-atlassian-hosted")
     compile("org.apache.activemq:activemq-all:5.10.0")
     compile("javax:javaee-api:7.0")
     compile("xmlunit:xmlunit:1.5")

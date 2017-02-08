@@ -11,19 +11,9 @@ abstract class ExampleTestCase extends Specification {
     /**
      * Client to call Weather API.
      */
-
     @Autowired
     HttpClient weatherApiHttpClient
 
     @Autowired
     HttpClient searchRegionsApiHttpClient
-
-    @Autowired
-    HttpClient getCurrentWeatherApiHttpClient
-
-    @Autowired
-    HttpClient getWeatherForecastApiHttpClient
-
-    @Autowired
-    HttpClient getDailyWeatherForecastApiHttpClient
 }

@@ -1,23 +1,17 @@
-package by.vadzimnovikau1.module7
+package openweathermap
 
-import com.ihg.middleware.test.ExampleTestCase
+import com.ihg.middleware.test.OpenWeatherMapTestCase
 
-class GetCurrentWeatherTestCaseXmlSlurper extends ExampleTestCase {
+class TC00002GetCurrentWeather_Correct_City_By_Geo_Coords extends OpenWeatherMapTestCase {
     def "User should be able to retrieve weather"() {
-        String latValue = "52.099998"
-        String lonValue = "23.700001"
-        String modeValue = "xml"
-        String typeValue = "like"
-        String idValue = ValuesFromProperties.getID()
 
         when: "I retrieve weather by geographic coordinates"
-        def response = getCurrentWeatherApiHttpClient.send(
+        def response = currentWeatherApiHttpClient.send(
                 REQUEST_PARAMS_STRING: "lat={lat}&lon={lon}&mode={mode}&appid={id}",
                 REQUEST_PARAMS_VARIABLES:
                         [
                                 lat : latValue,
                                 lon : lonValue,
-                                type: typeValue,
                                 mode: modeValue,
                                 id  : idValue
                         ],
@@ -27,6 +21,10 @@ class GetCurrentWeatherTestCaseXmlSlurper extends ExampleTestCase {
         def result = new XmlSlurper().parseText(response)
 
         then: "Correct city is founded"
-        result.city.@name == 'Brest'
+        assert result.city.@name == name
+
+        where:
+        latValue    |lonValue   ||name
+        "52.099998" |"23.700001"||"Brest"
     }
 }

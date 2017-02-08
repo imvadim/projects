@@ -5,7 +5,7 @@ subprojects{
 
     repositories {
         maven {
-            url "http://r19magpredev38.hiw.com/artifactory/repos"
+            url "http://sdlcbrm.hiw.com/artifactory/repo"
         }
 
         //resolve dependencies for generation of spock reports

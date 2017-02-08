@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.StringHttpMessageConverter
 import org.springframework.web.client.RestTemplate
+
 import java.nio.charset.StandardCharsets
 
 import static org.springframework.http.HttpMethod.POST
@@ -68,11 +69,11 @@ class HttpClient {
 
     ResponseEntity sendAndGetResponseEntity(params) {
         // mapping parameters for request
-        Map requestParamsVariables = params?.REQUEST_PARAMS_VARIABLES ?: Collections.<String, Object> emptyMap()
-        Map<String, String> requestHeaders = params?.REQUEST_HEADERS ?: Collections.<String, String> emptyMap()
+        Map requestParamsVariables = params?.REQUEST_PARAMS_VARIABLES ?: Collections.<String, Object>emptyMap()
+        Map<String, String> requestHeaders = params?.REQUEST_HEADERS ?: Collections.<String, String>emptyMap()
         HttpMethod requestMethod = params?.REQUEST_METHOD ?: POST
         def requestBody = params?.REQUEST_BODY ?: EMPTY_STRING
-        def requestParamsString = params?.REQUEST_PARAMS_STRING == null ? hostUrl : hostUrl + QUESTION_MARK + params.REQUEST_PARAMS_STRING
+        def requestParamsString = params?.REQUEST_PARAMS_STRING  == null ? hostUrl : hostUrl + QUESTION_MARK + params.REQUEST_PARAMS_STRING
 
         // convert GString -> String
         if (requestBody.class == GStringImpl) {
@@ -81,7 +82,7 @@ class HttpClient {
 
         // setup request headers
         def headers = new HttpHeaders()
-        requestHeaders.each { key, value -> headers.add(key, value) }
+        requestHeaders.each{key,value -> headers.add(key, value)}
 
         //using it for debug
         log.debug "Request headers:\n${headers}"
