@@ -3,6 +3,7 @@ package com.ihg.middleware.test
 import com.ihg.middleware.client.HttpClient
 import com.ihg.middleware.context.OpenWeatherMapContext
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
@@ -20,9 +21,6 @@ abstract class OpenWeatherMapTestCase extends Specification {
     @Autowired
     HttpClient dailyWeatherForecastApiHttpClient
 
-    @Autowired
+    @Value('${id}')
     String idValue
-
-    @Autowired
-    String modeValue
 }

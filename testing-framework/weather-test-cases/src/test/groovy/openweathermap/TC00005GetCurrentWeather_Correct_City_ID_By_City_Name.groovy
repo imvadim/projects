@@ -24,9 +24,9 @@ class TC00005GetCurrentWeather_Correct_City_ID_By_City_Name extends OpenWeatherM
         result.city.@id == cityId
 
         where:
-        locationValue   ||cityId
-        "Brest,by"      ||629634
-        "Hrodna"        ||627904
-        "Minsk"         ||625144
+        locationValue   |cityId |modeValue
+        "Brest,by"      |629634 |"xml"
+        "Hrodna"        |627904 |"xml"
+        "Minsk"         |625144 |"xml"
     }
 }

@@ -1,9 +1,9 @@
 package openweathermap
 
+import com.google.gson.JsonParser
 import com.ihg.middleware.test.OpenWeatherMapTestCase
-import groovy.json.JsonSlurper
 
-class TC00004GetWeatherDailyForecast_Correct_Number_Of_Lines_By_City_ID extends OpenWeatherMapTestCase {
+class TC00003GetWeatherDailyForecast_Temperature_Within_Limits_By_City_ID extends OpenWeatherMapTestCase {
     def "User should be able to retrieve daily forecast"() {
 
         when: "I retrieve daily forecast for a city id"
@@ -19,11 +19,15 @@ class TC00004GetWeatherDailyForecast_Correct_Number_Of_Lines_By_City_ID extends 
                 REQUEST_METHOD : "GET"
         )
 
-        then: "Number of lines returned by this API call is displayed in response"
-        assert new JsonSlurper().parseText(response).cnt == cntValue.toInteger()
+        def obj = new JsonParser().parse(response)
+        def jarray = obj.getAsJsonArray("list")
+
+        then: "Temperature in the daytime is within the limits of the city"
+        jarray.each {assert it.getAsJsonObject("temp").get("day").asBigDecimal > -35.5}
+        jarray.each {assert it.getAsJsonObject("temp").get("day").asBigDecimal < 36.7}
 
         where:
         locationIdValue |unitsValue |cntValue
-        "629634"        |"metric"   |"5"
+        629634          |"metric"   |16
     }
 }

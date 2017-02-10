@@ -24,7 +24,7 @@ class TC00002GetCurrentWeather_Correct_City_By_Geo_Coords extends OpenWeatherMap
         assert result.city.@name == name
 
         where:
-        latValue    |lonValue   ||name
-        "52.099998" |"23.700001"||"Brest"
+        latValue    |lonValue   |modeValue  |name
+        52.099998   |23.700001  |"xml"      |"Brest"
     }
 }

@@ -1,6 +1,9 @@
 package com.ihg.middleware.context
 
 import com.ihg.middleware.client.HttpClient
+import com.ihg.middleware.test.ExampleTestCase
+import com.ihg.middleware.test.OpenWeatherMapTestCase
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
 import org.springframework.context.annotation.Bean
@@ -25,7 +28,7 @@ class OpenWeatherMapContext extends AbstractContext {
 
     @Bean
     @Value('${weather.forecast.host.url}')
-    HttpClient weatherForecastApiHttpClient(String url) {
+    HttpClient weatherForecastApiHttpClient( String url) {
         new HttpClient(url)
     }
 
@@ -39,17 +42,5 @@ class OpenWeatherMapContext extends AbstractContext {
     @Value('${weather.daily.forecast.host.url}')
     HttpClient dailyWeatherForecastApiHttpClient(String url) {
         new HttpClient(url)
-    }
-
-    @Bean
-    @Value('${id}')
-    String idValue(String id) {
-        id
-    }
-
-    @Bean
-    @Value('${mode}')
-    String modeValue(String mode) {
-        mode
     }
 }
