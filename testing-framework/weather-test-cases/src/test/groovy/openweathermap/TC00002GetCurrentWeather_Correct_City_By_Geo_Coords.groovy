@@ -15,7 +15,7 @@ class TC00002GetCurrentWeather_Correct_City_By_Geo_Coords extends OpenWeatherMap
                                 mode: modeValue,
                                 id  : idValue
                         ],
-                REQUEST_METHOD : "GET"
+                REQUEST_METHOD: "GET"
         )
 
         def result = new XmlSlurper().parseText(response)
@@ -24,7 +24,7 @@ class TC00002GetCurrentWeather_Correct_City_By_Geo_Coords extends OpenWeatherMap
         assert result.city.@name == name
 
         where:
-        latValue    |lonValue   |modeValue  |name
-        52.099998   |23.700001  |"xml"      |"Brest"
+        latValue  | lonValue  | modeValue | name
+        52.099998 | 23.700001 | "xml"     | "Brest"
     }
 }

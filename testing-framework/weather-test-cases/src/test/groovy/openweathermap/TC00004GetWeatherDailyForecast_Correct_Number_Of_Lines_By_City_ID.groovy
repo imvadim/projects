@@ -16,16 +16,16 @@ class TC00004GetWeatherDailyForecast_Correct_Number_Of_Lines_By_City_ID extends 
                                 cnt     : cntValue,
                                 id      : idValue
                         ],
-                REQUEST_METHOD : "GET"
+                REQUEST_METHOD: "GET"
         )
 
         def result = new JsonSlurper().parseText(response)
 
         then: "Number of lines returned by this API call is displayed in response"
-        assert result.cnt == cntValue.toInteger()
+        assert result.cnt == cntValue
 
         where:
-        locationIdValue |unitsValue |cntValue
-        629634          |"metric"   |5
+        locationIdValue | unitsValue | cntValue
+        629634          | "metric"   | 5
     }
 }

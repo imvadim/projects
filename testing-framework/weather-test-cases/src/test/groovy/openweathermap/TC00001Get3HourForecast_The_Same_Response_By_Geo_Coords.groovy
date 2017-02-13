@@ -2,6 +2,9 @@ package openweathermap
 
 import com.ihg.middleware.test.OpenWeatherMapTestCase
 import org.custommonkey.xmlunit.XMLUnit
+
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 
 class TC00001Get3HourForecast_The_Same_Response_By_Geo_Coords extends OpenWeatherMapTestCase {
@@ -35,13 +38,20 @@ class TC00001Get3HourForecast_The_Same_Response_By_Geo_Coords extends OpenWeathe
 
         def result = new XmlSlurper().parseText(response)
 
-        def dates = result.forecast.time.@from.collect {
-            Date.parse("yyyy-MM-dd'T'HH:mm:ss", it.toString()).format("yyyy-MM-dd").toString()
+        def datesFromResponse = result.forecast.time.@from.collect {
+            Date.parse("yyyy-MM-dd'T'HH:mm:ss", it.toString()).format("yyyy-MM-dd")
         }
+
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+//        def datesFromResponse = result.forecast.time.@from.collect {
+//            dateFormat.parse(it.toString())
+//        }
+
+        def listOfCurrentDates = (0..2).collect {LocalDate.now().plusDays(it).toString() }
 
         then: "The same responses are displayed"
         assert XMLUnit.compareXML(response, anotherResponse).identical()
-        (0..2).each {element -> assert dates.find {it == LocalDate.now().plusDays(element).toString()} != null}
+        assert datesFromResponse.containsAll(listOfCurrentDates)
 
         where:
         latValue  | lonValue  | modeValue
