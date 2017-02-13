@@ -2,10 +2,7 @@ package openweathermap
 
 import com.ihg.middleware.test.OpenWeatherMapTestCase
 import org.custommonkey.xmlunit.XMLUnit
-
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 
 class TC00001Get3HourForecast_The_Same_Response_By_Geo_Coords extends OpenWeatherMapTestCase {
     def "User should be able to retrieve the same three hour weather forecast two times in a row"() {
@@ -38,20 +35,23 @@ class TC00001Get3HourForecast_The_Same_Response_By_Geo_Coords extends OpenWeathe
 
         def result = new XmlSlurper().parseText(response)
 
+        def now = new Date()
+        String dateTimeString = "yyyy-MM-dd"
+
+
+        def dateFormat = new SimpleDateFormat(dateTimeString)
+
         def datesFromResponse = result.forecast.time.@from.collect {
-            Date.parse("yyyy-MM-dd'T'HH:mm:ss", it.toString()).format("yyyy-MM-dd")
+            dateFormat.format(dateFormat.parse(it.toString()))
         }
 
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-//        def datesFromResponse = result.forecast.time.@from.collect {
-//            dateFormat.parse(it.toString())
-//        }
-
-        def listOfCurrentDates = (0..2).collect {LocalDate.now().plusDays(it).toString() }
+        def listOfCurrentDates = (0..2).collect {
+            dateFormat.format(now.plus(it))
+        }
 
         then: "The same responses are displayed"
-        assert XMLUnit.compareXML(response, anotherResponse).identical()
         assert datesFromResponse.containsAll(listOfCurrentDates)
+        assert XMLUnit.compareXML(response, anotherResponse).identical()
 
         where:
         latValue  | lonValue  | modeValue
