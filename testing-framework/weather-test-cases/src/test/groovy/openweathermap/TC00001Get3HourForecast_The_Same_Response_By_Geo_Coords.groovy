@@ -42,15 +42,9 @@ class TC00001Get3HourForecast_The_Same_Response_By_Geo_Coords extends OpenWeathe
             dateFormat.format(dateFormat.parse(it.toString()))
         }
 
-        //plus changing: variant 1
-        def listOfCurrentDates = (1..3).collect {
-            dateFormat.format(now++)
+        def listOfCurrentDates = (0..2).collect {
+            dateFormat.format(now + it)
         }
-
-        //plus changing: variant 2
-//        def listOfCurrentDates = (0..2).collect {
-//            dateFormat.format(now + it)
-//        }
 
         then: "The same responses are displayed"
         assert datesFromResponse.containsAll(listOfCurrentDates)
