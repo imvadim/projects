@@ -20,12 +20,10 @@ class TC00003GetWeatherDailyForecast_Temperature_Within_Limits_By_City_ID extend
         )
 
         def obj = new JsonParser().parse(response)
-        def jarray = obj.list
-        def temp
 
         then: "Temperature in the daytime is within the limits of the city"
-        jarray.each {
-            temp = it.temp.day.asBigDecimal
+        obj.list.each {
+            def temp = it.temp.day.asBigDecimal
             assert temp > -35.5 && temp < 36.7
         }
 
