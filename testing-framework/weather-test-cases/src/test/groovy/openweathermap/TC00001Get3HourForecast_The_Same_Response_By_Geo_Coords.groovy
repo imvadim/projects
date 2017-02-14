@@ -34,20 +34,23 @@ class TC00001Get3HourForecast_The_Same_Response_By_Geo_Coords extends OpenWeathe
         )
 
         def result = new XmlSlurper().parseText(response)
-
         def now = new Date()
         String dateTimeString = "yyyy-MM-dd"
-
-
         def dateFormat = new SimpleDateFormat(dateTimeString)
 
         def datesFromResponse = result.forecast.time.@from.collect {
             dateFormat.format(dateFormat.parse(it.toString()))
         }
 
-        def listOfCurrentDates = (0..2).collect {
-            dateFormat.format(now.plus(it))
+        //plus changing: variant 1
+        def listOfCurrentDates = (1..3).collect {
+            dateFormat.format(now++)
         }
+
+        //plus changing: variant 2
+//        def listOfCurrentDates = (0..2).collect {
+//            dateFormat.format(now + it)
+//        }
 
         then: "The same responses are displayed"
         assert datesFromResponse.containsAll(listOfCurrentDates)

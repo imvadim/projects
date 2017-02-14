@@ -7,7 +7,7 @@ class TC00004GetWeatherDailyForecast_Correct_Number_Of_Lines_By_City_ID extends 
     def "User should be able to retrieve daily forecast"() {
 
         when: "I retrieve daily forecast for a city id"
-        String response = dailyWeatherForecastApiHttpClient.send(
+        def response = dailyWeatherForecastApiHttpClient.send(
                 REQUEST_PARAMS_STRING: "id={location}&units={units}&cnt={cnt}&appid={id}",
                 REQUEST_PARAMS_VARIABLES:
                         [

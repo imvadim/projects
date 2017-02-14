@@ -7,7 +7,7 @@ class TC00003GetWeatherDailyForecast_Temperature_Within_Limits_By_City_ID extend
     def "User should be able to retrieve daily forecast"() {
 
         when: "I retrieve daily forecast for a city id"
-        String response = dailyWeatherForecastApiHttpClient.send(
+        def response = dailyWeatherForecastApiHttpClient.send(
                 REQUEST_PARAMS_STRING: "id={location}&units={units}&cnt={cnt}&appid={id}",
                 REQUEST_PARAMS_VARIABLES:
                         [
@@ -20,12 +20,12 @@ class TC00003GetWeatherDailyForecast_Temperature_Within_Limits_By_City_ID extend
         )
 
         def obj = new JsonParser().parse(response)
-        def jarray = obj.get("list")
+        def jarray = obj.list
         def temp
 
         then: "Temperature in the daytime is within the limits of the city"
         jarray.each {
-            temp = it.get("temp").get("day").asBigDecimal
+            temp = it.temp.day.asBigDecimal
             assert temp > -35.5 && temp < 36.7
         }
 
