@@ -9,7 +9,17 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="DaysToReservation" elementType="Argument">
             <stringProp name="Argument.name">DaysToReservation</stringProp>
-            <stringProp name="Argument.value">50</stringProp>
+            <stringProp name="Argument.value">${__Random(1,38)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ServerName" elementType="Argument">
+            <stringProp name="Argument.name">ServerName</stringProp>
+            <stringProp name="Argument.value">grsdevlab101.hiw.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PortNumber" elementType="Argument">
+            <stringProp name="Argument.name">PortNumber</stringProp>
+            <stringProp name="Argument.value">8080</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -58,8 +68,8 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">grsdevlab101.hiw.com</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.domain">${ServerName}</stringProp>
+          <stringProp name="HTTPSampler.port">${PortNumber}</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
@@ -110,8 +120,8 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">grsdevlab101.hiw.com</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.domain">${ServerName}</stringProp>
+          <stringProp name="HTTPSampler.port">${PortNumber}</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
@@ -162,8 +172,8 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">grsdevlab101.hiw.com</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.domain">${ServerName}</stringProp>
+          <stringProp name="HTTPSampler.port">${PortNumber}</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
@@ -189,7 +199,7 @@
           <hashTree/>
         </hashTree>
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-          <stringProp name="IfController.condition">&quot;${ReferenceValue}&quot; != null</stringProp>
+          <stringProp name="IfController.condition">&quot;${ReferenceValue}&quot; &gt; 0</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
         </IfController>
         <hashTree>
@@ -219,8 +229,8 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">grsdevlab101.hiw.com</stringProp>
-            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.domain">${ServerName}</stringProp>
+            <stringProp name="HTTPSampler.port">${PortNumber}</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
@@ -271,7 +281,7 @@ import java.util.Date;
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
         </BeanShellSampler>
         <hashTree/>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
           <boolProp name="displayJMeterProperties">false</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
